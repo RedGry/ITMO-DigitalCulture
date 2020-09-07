@@ -13,11 +13,6 @@ b = 709
 import math
 print("Задание 1:")
 print(a * 16)
-c = (b * math.log(10,2)) / 0.5
-if c // 1 % 2 == 0:
-    c = c // 1 + 2
-else:
-    c = c // 1 + 1
-print()
-print("Задание 2:")
+c = ((b * math.log(10,2)) / 0.5) // 1 + 1
+print("\nЗадание 2:")
 print('%i' % c)
