@@ -1,67 +1,61 @@
 # 1 Упражнение
 # Вставляешь из задания p, q, c, text (k - это количество знаков "... коды стали длиной k знаков" из 1 упражнения)
-p = 41
-q = 157
-c = 2089
-text = "Пикассо"
-k = 4
-
+p = 149
+q = 179
+c = 15121
+text = "Кунсткамера"
+k = 5
 
 # 2 Упражнение
-# Самостоятельно разбиваешь свое большое число по количеству знаков и убираешь лишние нули в начале числа
-# Пример: 312223953446223521130234         По 4 знака - нули слева! : 3122 2395 3446 2235 2113 234
-# Через запятую загоняешь в массив
-name = [17447,4749,15707,18323,13312]
+# (kk - это количество знаков "... коды стали длиной k знаков" из 2 упражнения)
+C = "0149121202143331626926006211943006612721"
+kk = 5
 
-# Числа из зыкрытого ключа
-# 1 число:
-g = 6397
-# 2 число:
-l = 21809
+# Числа из закрытого ключа
+private_key = [30473, 34393]
 
 
-# Эту часть кода лучше не трогай)))
+# Решение
+# Задание 1
 a = []
-[a.append(ord(i) - 848) for i in text]
 b = ""
+d = 0
 op = ""
 p1 = p - 1
 q1 = q - 1
 N = p * q
+
+[a.append(ord(i) - 848) for i in text]
+
 for gg in range(N + 1):
     if (c * gg % (p1 * q1)) == 1:
         d = gg
 for i in a:
-    if k == 5:
-        if int(i) ** c % N // 1000 == 0:
-            h = ("00" + str(int(i) ** int(c) % N))
-            b += h
-        elif int(i) ** c % N // 10000 == 0:
-            h = ("0" + str(int(i) ** int(c) % N))
-            b += h
-        else:
-            b += str(int(i) ** int(c) % N)
-    else:
-        if int(i) ** c % N // 100 == 0:
-            h = ("00" + str(int(i) ** int(c) % N))
-            b += h
-        elif int(i) ** c % N // 1000 == 0:
-            h = ("0" + str(int(i) ** int(c) % N))
-            b += h
-        else:
-            b += str(int(i) ** int(c) % N)
-for i in name:
-    temp_in = i ** g % l
+    num = str(int(i) ** int(c) % N)
+    b += "0" * (k - len(num)) + num
+
+# Задание 2
+C = [C[i:i + kk] for i in range(0, len(C), kk)]
+
+for i, j in zip(C, range(len(C))):
+    count = 0
+    for t in i:
+        if t == "0":
+            count += 1
+            continue
+        break
+    C[j] = C[j][count:]
+
+for i in C:
+    temp_in = int(i) ** private_key[0] % private_key[1]
     temp_out = chr(temp_in + 848)
     op += temp_out
-    
 
-    
-print("Уппажнение 1")
-print("d =", d)
-print("N =", N)
-[print(i, end='') for i in a]
-print()
-print("Зашифрованное значение:", b, "\n")
-print("2 Упражнение")
-print("Просто вставь это слово в ответ:", op)    
+print("Упражнение 1")
+print(f"d = {d}")
+print(f"N = {N}")
+print(f'Полученная последовательность ASCII символов: {"".join(str(i) for i in a)}')
+print(f"Зашифрованное значение: {b}", "\n")
+
+print("Упражнение 2")
+print(f"Просто вставь это слово в ответ: {op}")
