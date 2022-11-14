@@ -13,5 +13,5 @@ k = 0.17  # 9
 o = (1 - a) * (1 - b) * (1 - c) * (1 - d) * (1 - k)
 z = o / (1 - c) - o
 print(round(o, 2))
-print(round(f, 2))
+print(round(z, 2))
 print(round((1 - h) * (1 - k), 2))
